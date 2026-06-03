@@ -215,18 +215,27 @@ html,body{background:var(--bg);color:var(--txt);font-family:var(--mono);font-siz
 
   <!-- SALDOS -->
   <div class="card">
-    <div class="card-title">Saldos bancarios</div>
-    <div class="saldo-item si-med" onclick="abrirSaldo('mediolanum')">
-      <div class="si-left"><div class="si-dot" style="background:var(--med)"></div><div><div class="si-name">Banco Mediolanum</div><div class="si-hint">toca para editar</div></div></div>
-      <span class="si-amount c-med" id="s-med">270,00 €</span>
+    <div class="card-title">Saldos bancarios · toca para ver movimientos</div>
+    <div class="saldo-item si-med" onclick="irACuenta('mediolanum')">
+      <div class="si-left"><div class="si-dot" style="background:var(--med)"></div><div><div class="si-name">Banco Mediolanum</div><div class="si-hint">ver movimientos →</div></div></div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <span class="si-amount c-med" id="s-med">270,00 €</span>
+        <button onclick="event.stopPropagation();abrirSaldo('mediolanum')" style="background:rgba(255,92,0,.15);border:1px solid var(--med-brd);color:var(--med);font-family:var(--mono);font-size:10px;padding:4px 8px;border-radius:5px;cursor:pointer;flex-shrink:0;">editar</button>
+      </div>
     </div>
-    <div class="saldo-item si-cxa" onclick="abrirSaldo('caixa')">
-      <div class="si-left"><div class="si-dot" style="background:var(--cxa)"></div><div><div class="si-name">CaixaBank</div><div class="si-hint">toca para editar</div></div></div>
-      <span class="si-amount c-cxa" id="s-cxa">112,00 €</span>
+    <div class="saldo-item si-cxa" onclick="irACuenta('caixa')">
+      <div class="si-left"><div class="si-dot" style="background:var(--cxa)"></div><div><div class="si-name">CaixaBank</div><div class="si-hint">ver movimientos →</div></div></div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <span class="si-amount c-cxa" id="s-cxa">112,00 €</span>
+        <button onclick="event.stopPropagation();abrirSaldo('caixa')" style="background:rgba(61,143,255,.15);border:1px solid var(--cxa-brd);color:var(--cxa);font-family:var(--mono);font-size:10px;padding:4px 8px;border-radius:5px;cursor:pointer;flex-shrink:0;">editar</button>
+      </div>
     </div>
-    <div class="saldo-item si-cas" onclick="abrirSaldo('efectivo')">
-      <div class="si-left"><div class="si-dot" style="background:var(--cas)"></div><div><div class="si-name">Efectivo</div><div class="si-hint">toca para editar</div></div></div>
-      <span class="si-amount c-cas" id="s-efx">61,40 €</span>
+    <div class="saldo-item si-cas" onclick="irACuenta('efectivo')">
+      <div class="si-left"><div class="si-dot" style="background:var(--cas)"></div><div><div class="si-name">Efectivo</div><div class="si-hint">ver movimientos →</div></div></div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <span class="si-amount c-cas" id="s-efx">61,40 €</span>
+        <button onclick="event.stopPropagation();abrirSaldo('efectivo')" style="background:rgba(0,209,112,.15);border:1px solid var(--cas-brd);color:var(--cas);font-family:var(--mono);font-size:10px;padding:4px 8px;border-radius:5px;cursor:pointer;flex-shrink:0;">editar</button>
+      </div>
     </div>
     <div class="total-row">
       <span class="total-lbl">Total líquido</span>
@@ -261,14 +270,20 @@ html,body{background:var(--bg);color:var(--txt);font-family:var(--mono);font-siz
   </div>
 
   <!-- TARJETA ECI -->
-  <div class="eci-card">
-    <div class="card-title" style="color:var(--eci-lt)">Tarjeta — El Corte Inglés</div>
-    <div style="font-size:11px;color:var(--muted)">No computa en presupuesto mensual · Solo seguimiento</div>
+  <div class="eci-card" onclick="irACuenta('tarjeta')" style="cursor:pointer;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+      <div class="card-title" style="color:var(--eci-lt);margin-bottom:0;">Tarjeta — El Corte Inglés</div>
+      <span style="font-size:10px;color:var(--eci-lt);">ver movimientos →</span>
+    </div>
+    <div style="font-size:11px;color:var(--muted);margin-bottom:12px;">No computa en presupuesto · Solo seguimiento</div>
     <div class="eci-stats">
       <div class="eci-stat"><div class="eci-stat-lbl casa" style="color:#7ae0b0">🏠 Casa</div><div class="eci-stat-val" id="eci-casa">0,00 €</div></div>
       <div class="eci-stat"><div class="eci-stat-lbl work" style="color:#a0c8ff">💼 Trabajo</div><div class="eci-stat-val" id="eci-trabajo">0,00 €</div></div>
     </div>
-    <div style="text-align:center;margin-top:10px;font-size:11px;color:var(--muted)">Total este mes: <strong style="color:var(--eci-lt)" id="eci-total">0,00 €</strong></div>
+    <div style="background:rgba(0,166,81,.12);border:1px solid rgba(0,166,81,.3);border-radius:8px;padding:10px 14px;margin-top:10px;display:flex;justify-content:space-between;align-items:center;">
+      <span style="font-size:11px;color:var(--muted2);">Total este mes (Casa + Trabajo)</span>
+      <strong style="font-family:var(--font);font-size:20px;font-weight:700;color:var(--eci-lt);letter-spacing:-0.5px;" id="eci-total">0,00 €</strong>
+    </div>
   </div>
 
   <!-- RESUMEN MES -->
@@ -348,6 +363,7 @@ html,body{background:var(--bg);color:var(--txt);font-family:var(--mono);font-siz
 
 <!-- ═══════════ MOVIMIENTOS ═══════════ -->
 <div class="page" id="page-movimientos">
+  <div id="cuenta-header" style="display:none;padding:10px 14px;border-radius:8px;margin-bottom:12px;font-family:var(--font);font-size:13px;font-weight:600;"></div>
   <div class="filter-row">
     <button class="ftab active" onclick="setFiltro('todos',this)">Todos</button>
     <button class="ftab" onclick="setFiltro('gastos',this)">Gastos</button>
@@ -376,6 +392,11 @@ html,body{background:var(--bg);color:var(--txt);font-family:var(--mono);font-siz
   <div class="chart-wrap">
     <div class="chart-title">Progreso ahorro Mediolanum</div>
     <canvas id="chart-ahorro"></canvas>
+  </div>
+  <div class="chart-wrap">
+    <div class="chart-title">Tarjeta El Corte Inglés — Casa vs Trabajo (este mes)</div>
+    <canvas id="chart-eci"></canvas>
+    <div id="eci-chart-detalle" style="margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:8px;"></div>
   </div>
 </div>
 
@@ -535,7 +556,39 @@ function delMov(id){
   save();render();renderMovs();showN('Movimiento eliminado');
 }
 
-// ── FILTRO ─────────────────────────────────────────────────────────────────
+// ── IR A CUENTA ────────────────────────────────────────────────────────────
+function irACuenta(cuenta){
+  S.filtro='cuenta_'+cuenta;
+  var tabs=document.querySelectorAll('.nav-tab');
+  goPage('movimientos', tabs[2]);
+  document.querySelectorAll('.ftab').forEach(function(t){t.classList.remove('active');});
+
+  // Mostrar header de cuenta activa
+  var cfgMap={
+    mediolanum:{label:'Banco Mediolanum',color:'var(--med)',bg:'var(--med-bg)',brd:'var(--med-brd)',icon:'🟠'},
+    caixa:{label:'CaixaBank',color:'var(--cxa)',bg:'var(--cxa-bg)',brd:'var(--cxa-brd)',icon:'🔵'},
+    efectivo:{label:'Efectivo',color:'var(--cas)',bg:'var(--cas-bg)',brd:'var(--cas-brd)',icon:'💚'},
+    tarjeta:{label:'Tarjeta El Corte Inglés',color:'var(--eci-lt)',bg:'var(--eci-bg)',brd:'var(--eci-brd)',icon:'💳'}
+  };
+  var cfg=cfgMap[cuenta]||cfgMap.efectivo;
+  var hdr=document.getElementById('cuenta-header');
+  hdr.style.display='flex';
+  hdr.style.alignItems='center';
+  hdr.style.justifyContent='space-between';
+  hdr.style.background=cfg.bg;
+  hdr.style.border='1px solid '+cfg.brd;
+  hdr.style.color=cfg.color;
+  hdr.innerHTML=cfg.icon+' '+cfg.label
+    +'<button onclick="limpiarCuenta()" style="background:none;border:none;color:var(--muted);font-size:18px;cursor:pointer;padding:0 4px;">✕</button>';
+  renderMovs();
+}
+function limpiarCuenta(){
+  S.filtro='todos';
+  document.getElementById('cuenta-header').style.display='none';
+  document.querySelectorAll('.ftab').forEach(function(t){t.classList.remove('active');});
+  document.querySelector('.ftab').classList.add('active');
+  renderMovs();
+}
 function setFiltro(f,el){
   S.filtro=f;
   document.querySelectorAll('.ftab').forEach(function(t){t.classList.remove('active');});
@@ -554,6 +607,10 @@ function filteredMovs(){
     if(S.filtro==='tarjeta') return m.tipo==='tarjeta';
     if(S.filtro==='mes') return m.fecha.startsWith(mes);
     if(S.filtro==='semana') return new Date(m.fecha)>=lunesSem;
+    if(S.filtro==='cuenta_mediolanum') return m.cuenta==='mediolanum'||m.destino==='mediolanum';
+    if(S.filtro==='cuenta_caixa') return m.cuenta==='caixa'||m.destino==='caixa';
+    if(S.filtro==='cuenta_efectivo') return m.cuenta==='efectivo'||m.destino==='efectivo';
+    if(S.filtro==='cuenta_tarjeta') return m.tipo==='tarjeta';
     return true;
   });
 }
@@ -800,6 +857,51 @@ function renderCharts(){
     },
     options:{responsive:true,cutout:'72%',plugins:{legend:{labels:{color:'#666',font:{size:11}}},tooltip:{callbacks:{label:function(c){return c.label+': '+fmt(c.raw);}}}}}
   });
+
+  // ECI Casa vs Trabajo — doughnut
+  var eciMes=getMes(),eciCasa=0,eciTrab=0;
+  S.movimientos.forEach(function(m){
+    if(m.tipo!=='tarjeta'||!m.fecha.startsWith(eciMes))return;
+    if(m.subtipo==='casa') eciCasa+=m.importe; else eciTrab+=m.importe;
+  });
+  var eciTotal=eciCasa+eciTrab;
+  if(charts.eci) charts.eci.destroy();
+  var ctxE=document.getElementById('chart-eci').getContext('2d');
+  if(eciTotal>0){
+    charts.eci=new Chart(ctxE,{
+      type:'doughnut',
+      data:{
+        labels:['🏠 Casa','💼 Trabajo'],
+        datasets:[{
+          data:[eciCasa,eciTrab],
+          backgroundColor:['rgba(0,204,102,.7)','rgba(61,143,255,.7)'],
+          borderColor:['#00cc66','#3d8fff'],borderWidth:1,hoverOffset:4
+        }]
+      },
+      options:{responsive:true,cutout:'68%',plugins:{
+        legend:{labels:{color:'#999',font:{size:11}}},
+        tooltip:{callbacks:{label:function(c){return c.label+': '+fmt(c.raw)+' ('+Math.round(c.raw/eciTotal*100)+'%)';}}}
+      }}
+    });
+    document.getElementById('eci-chart-detalle').innerHTML=
+      '<div style="background:rgba(0,204,102,.1);border:1px solid rgba(0,204,102,.3);border-radius:8px;padding:12px;text-align:center;">'
+      +'<div style="font-size:10px;color:#7ae0b0;text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px;">🏠 Casa</div>'
+      +'<div style="font-family:var(--font);font-size:22px;font-weight:700;color:var(--eci-lt)">'+fmt(eciCasa)+'</div>'
+      +'<div style="font-size:10px;color:var(--muted);margin-top:2px;">'+Math.round(eciCasa/eciTotal*100)+'% del total</div>'
+      +'</div>'
+      +'<div style="background:rgba(61,143,255,.1);border:1px solid rgba(61,143,255,.3);border-radius:8px;padding:12px;text-align:center;">'
+      +'<div style="font-size:10px;color:#a0c8ff;text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px;">💼 Trabajo</div>'
+      +'<div style="font-family:var(--font);font-size:22px;font-weight:700;color:var(--cxa)">'+fmt(eciTrab)+'</div>'
+      +'<div style="font-size:10px;color:var(--muted);margin-top:2px;">'+Math.round(eciTrab/eciTotal*100)+'% del total</div>'
+      +'</div>'
+      +'<div style="grid-column:1/-1;background:var(--eci-bg);border:1px solid var(--eci-brd);border-radius:8px;padding:10px;text-align:center;">'
+      +'<span style="font-size:11px;color:var(--muted2);">Total tarjeta este mes: </span>'
+      +'<strong style="font-family:var(--font);font-size:18px;font-weight:700;color:var(--eci-lt);">'+fmt(eciTotal)+'</strong>'
+      +'</div>';
+  } else {
+    ctxE.canvas.style.display='none';
+    document.getElementById('eci-chart-detalle').innerHTML='<div style="color:var(--muted);font-size:12px;padding:8px 0;grid-column:1/-1">Sin movimientos de tarjeta este mes</div>';
+  }
 }
 
 // ── RENDER CONSEJOS ────────────────────────────────────────────────────────
