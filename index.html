@@ -140,8 +140,8 @@ html,body{background:var(--bg);color:var(--txt);font-family:var(--mono);font-siz
 .mov-badge{font-size:10px;padding:2px 7px;border-radius:4px;font-weight:500;border:1px solid transparent;}
 .mov-right{text-align:right;}
 .mov-imp{font-family:var(--font);font-size:16px;font-weight:700;letter-spacing:-.5px;white-space:nowrap;}
-.mov-del{background:none;border:none;color:var(--muted);cursor:pointer;font-size:16px;padding:4px 2px;margin-top:2px;display:block;margin-left:auto;}
-.mov-del:active{color:var(--red);}
+.mov-del{background:rgba(255,59,59,.12);border:1px solid rgba(255,59,59,.3);color:var(--red);cursor:pointer;font-size:14px;padding:6px 10px;border-radius:6px;display:block;margin-top:4px;margin-left:auto;font-family:var(--mono);}
+.mov-del:active{background:var(--red);color:#fff;}
 .mov-date-badge{font-size:10px;color:var(--muted);margin-top:1px;}
 
 .empty-st{text-align:center;padding:48px 20px;color:var(--muted);}
@@ -758,7 +758,7 @@ function renderMovs(){
       var hora=new Date(m.fecha).toLocaleTimeString('es-ES',{hour:'2-digit',minute:'2-digit'});
       html+='<div class="mov-item"><div class="mov-icon" style="background:'+cfg.bg+';border:1px solid '+cfg.brd+'">'+icon+'</div>';
       html+='<div><div class="mov-desc">'+m.desc+'</div><div class="mov-meta"><span class="mov-cat">'+m.cat+'</span><span class="mov-badge" style="color:'+cfg.color+';background:'+cfg.bg+';border-color:'+cfg.brd+'">'+cfg.label+'</span></div></div>';
-      html+='<div class="mov-right"><div class="mov-imp" style="color:'+col+'">'+pre+' '+fmt(m.importe)+'</div><button class="mov-del" onclick="delMov('+m.id+')" title="Eliminar">🗑</button></div></div>';
+      html+='<div class="mov-right"><div class="mov-imp" style="color:'+col+'">'+pre+' '+fmt(m.importe)+'</div><button class="mov-del" onclick="delMov('+m.id+')" title="Eliminar">🗑 borrar</button></div></div>';
     });
   });
   list.innerHTML=html;
